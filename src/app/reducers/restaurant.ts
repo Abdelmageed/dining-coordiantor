@@ -30,6 +30,28 @@ export function reducer(state = initialState, action: restaurant.Actions): State
                 ids: newRestaurantIds
             })
         }
+
+        case restaurant.ADD_GOING: {
+            if(!state.entities[action.payload]) {return state;}
+
+            const rest = state.entities[action.payload];
+            const newRest = Object.assign({}, rest, {goingCount: rest.goingCount + 1});
+            return Object.assign({}, state, {
+                entities: Object.assign({}, state.entities, {
+                    [action.payload]: newRest})
+            });
+        }
+
+        case restaurant.REMOVE_GOING: {
+            if(!state.entities[action.payload]) {return state;}
+            
+            const rest = state.entities[action.payload];
+            const newRest = Object.assign({}, rest, {goingCount: rest.goingCount - 1});
+            return Object.assign({}, state, {
+                entities: Object.assign({}, state.entities, {
+                    [action.payload]: newRest})
+            });
+        }
             
         default:
             return state;

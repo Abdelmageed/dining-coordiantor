@@ -6,6 +6,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { SearchComponent } from './components/search/search.component';
+import { RestaurantsComponent } from './containers/restaurant-list/restaurants.component';
+import { RestaurantListComponent } from "./components/restaurant-list/restaurant-list.component";
 
 import { RestaurantService } from "./services/restaurant.service";
 import { InMemoryWebApiModule } from "angular-in-memory-web-api";
@@ -15,12 +18,13 @@ import { reducers, initialState} from './reducers/index';
 
 import { EffectsModule } from "@ngrx/effects";
 import { RestaurantEffects } from "./effects/restaurant";
-import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchComponent
+    SearchComponent,
+    RestaurantsComponent,
+    RestaurantListComponent
   ],
   imports: [
     BrowserModule,
