@@ -1,0 +1,16 @@
+<div class="search-form row">
+  <div class="col-md-12">
+    <form   [formGroup]="searchForm" 
+              (ngSubmit)="onSubmit()"
+              novalidate>
+    <div class="form-group">
+      <div class="input-group">
+          <input type="text" placeholder="Your City" formControlName="search">
+          <div class="input-group-addon">
+            <button type="submit" class="btn btn-primary">Search</button>    
+          </div>
+      </div>
+    </div>
+  </form>
+  </div>
+</div>

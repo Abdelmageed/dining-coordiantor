@@ -1,3 +1,4 @@
-<input type="text" #searchInput>
-<button (click)="search(searchInput.value)">Search</button>
-{{restaurants | async | json}}
+<div class="container">
+    <app-search></app-search>
+    {{restaurants | async | json}}
+</div>
