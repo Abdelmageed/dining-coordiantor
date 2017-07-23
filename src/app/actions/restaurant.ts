@@ -22,19 +22,19 @@ export class SearchCompleteAction implements Action {
 export class AddGoingRequestAction implements Action {
     readonly type = ADD_GOING_REQUEST;
 
-    constructor(public payload: number) {}
+    constructor(public payload: {placeId: number, userId: number}) {}
 }
 
 export class AddGoingAction implements Action {
     readonly type = ADD_GOING;
 
-    constructor(public payload: number) {}
+    constructor(public payload: {placeId: number, userId: number}) {}
 }
 
 export class RemoveGoingAction implements Action {
     readonly type = REMOVE_GOING;
 
-    constructor(public payload: number) {}
+    constructor(public payload: {placeId: number, userId: number}) {}
 }
 
 export type Actions = SearchAction
