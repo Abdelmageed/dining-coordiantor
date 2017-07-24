@@ -32,30 +32,28 @@ export function reducer(state = initialState, action: restaurant.Actions): State
         }
 
         case restaurant.ADD_GOING: {
-            const rest = state.entities[action.payload.placeId];
+            const rest = state.entities[action.payload.restaurantId];
             if(!rest) {return state;}
 
             const newRest = Object.assign({}, rest, {
-                goingCount: rest.goingCount.concat(action.payload.userId)
+                going: rest.going.concat(action.payload.userId)
             });
             return Object.assign({}, state, {
                 entities: Object.assign({}, state.entities, {
-                    [action.payload.placeId]: newRest})
+                    [action.payload.restaurantId]: newRest})
             });
         }
 
         case restaurant.REMOVE_GOING: {
-            const rest = state.entities[action.payload.placeId];
+            const rest = state.entities[action.payload.restaurantId];
             if(!rest) {return state;}
 
             const newRest = Object.assign({}, rest, {
-                goingCount: rest.goingCount.filter(id => {
-                    id != action.payload.userId
-                })
+                going: rest.going.filter(id => id != action.payload.userId)
             });
             return Object.assign({}, state, {
                 entities: Object.assign({}, state.entities, {
-                    [action.payload.placeId]: newRest})
+                    [action.payload.restaurantId]: newRest})
             });
         }
             
@@ -70,4 +68,4 @@ export const getIds = (state: State) => state.ids;
 
 export const getAll = createSelector(getEntities, getIds, (entities, ids) => {
     return ids.map(id => entities[id]);
-})
+});

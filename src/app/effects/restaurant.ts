@@ -23,4 +23,20 @@ export class RestaurantEffects {
         .switchMap(location => this.restaurantService.getRestaurants(location))
         .map(restaurants => new restaurant.SearchCompleteAction(restaurants))
         .catch(err => of(new restaurant.SearchCompleteAction([])));
+
+    @Effect() addGoing$: Observable<Action> = this.actions$
+        .ofType(restaurant.ADD_GOING_REQUEST)
+        .map(toPayload)
+        .switchMap(restaurantId => this.restaurantService.addGoing(restaurantId))
+        .map(data => new restaurant.AddGoingAction({
+            userId: data.userId, restaurantId: data.restaurantId
+        }));
+
+    @Effect() removeGoing$: Observable<Action> = this.actions$
+        .ofType(restaurant.REMOVE_GOING_REQUEST)
+        .map(toPayload)
+        .switchMap(restaurantId => this.restaurantService.removeGoing(restaurantId))
+        .map(data => new restaurant.RemoveGoingAction({
+            userId: data.userId, restaurantId: data.restaurantId
+        }));
 }

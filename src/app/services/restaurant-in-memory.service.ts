@@ -9,31 +9,31 @@ export class RestaurantInMemoryService implements InMemoryDbService {
                 id: 0,
                 name: 'Big Burgers',
                 location: 'Cairo',
-                goingCount: 0
+                going: []
             },
             {
                 id: 1,                
                 name: 'Bigger Burgers',
                 location: 'Cairo',
-                goingCount: 0
+                going: []
             },
             {
                 id: 2,                
                 name: 'Big Burgers Alex.',
                 location: 'Alexandria',
-                goingCount: 0
+                going: []
             },
             {
                 id: 3,
                 name: 'Hot Chillis',
                 location: 'Cairo',
-                goingCount: 1
+                going: [0]
             },
             {
                 id: 4,
                 name: 'Icy Cocktails',
                 location: 'Alexandria',
-                goingCount: 3
+                going: [0, 1, 2]
             }
         ];
 

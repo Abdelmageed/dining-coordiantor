@@ -1,4 +1,11 @@
 <div *ngFor="let restaurant of restaurants" class="restaurant">
-  {{restaurant.name}} <span class="going-count">{{restaurant.goingCount}} Going</span>
-  toggle going
+  {{restaurant.name}} 
+  <span *ngIf="!restaurantService.isLoggedInUserGoing(restaurant.id)" 
+        class="going-count"
+        (click)="addGoing.emit(restaurant.id)">{{restaurant.going.length}} Going
+  </span>
+  <span *ngIf="restaurantService.isLoggedInUserGoing(restaurant.id)" 
+        class="going-count user-going"
+        (click)="removeGoing.emit(restaurant.id)">{{restaurant.going.length}} Going
+  </span>
 </div>

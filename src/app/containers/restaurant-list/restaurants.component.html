@@ -1,1 +1,4 @@
-<app-restaurant-list [restaurants]="restaurants | async"></app-restaurant-list>
+<app-restaurant-list    [restaurants]="restaurants | async"
+                        (addGoing)="addGoing($event)"
+                        (removeGoing)="removeGoing($event)"
+></app-restaurant-list>

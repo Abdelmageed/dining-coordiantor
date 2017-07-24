@@ -1,0 +1,14 @@
+.restaurant {
+    margin-bottom: 20px;
+}
+.going-count {
+    float: right;
+    padding: 5px;
+    border: 1px solid darkblue;
+    border-radius: 10%;
+}
+
+.user-going {
+    background-color: darkblue;
+    color: white;
+}

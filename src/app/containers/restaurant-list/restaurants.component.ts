@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Restaurant } from "../../models/restaurant";
 import * as fromRoot from '../../reducers/index';
+import * as restaurant from '../../actions/restaurant';
 
 @Component({
   selector: 'app-restaurants',
@@ -16,6 +17,15 @@ export class RestaurantsComponent implements OnInit {
 
   constructor(private _store: Store<fromRoot.State>) { 
         this.restaurants = this._store.select(fromRoot.getAllRestaurants);
+      
+  }
+
+  addGoing(restaurantId) {
+    this._store.dispatch(new restaurant.AddGoingRequestAction(restaurantId));
+  }
+
+  removeGoing(restaurantId) {
+    this._store.dispatch(new restaurant.RemoveGoingRequestAction(restaurantId));
   }
 
   ngOnInit() {
