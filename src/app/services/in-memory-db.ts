@@ -1,10 +1,7 @@
-import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Restaurant } from "../models/restaurant";
+import { User } from "../models/user";
 
-export class RestaurantInMemoryService implements InMemoryDbService {
-
-    createDb () {
-        let restaurants: Restaurant[] = [
+const restaurants: Restaurant[] = [
             {
                 id: 0,
                 name: 'Big Burgers',
@@ -35,8 +32,19 @@ export class RestaurantInMemoryService implements InMemoryDbService {
                 location: 'Alexandria',
                 going: [0, 1, 2]
             }
-        ];
+];
 
-    return {restaurants};
+const users: User[] = [
+    {
+        id: 0,
+        name: 'Abdelmageed',
+        email: 'mgd@sm.com',
+        password: 'Welcome123',
+        token: ''
     }
+];
+
+export const db = {
+    restaurants,
+    users
 }

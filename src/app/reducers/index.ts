@@ -33,3 +33,4 @@ export const getAllRestaurants = createSelector(getRestaurantState, fromRestaura
 
 export const getUserState = (state: State) => state.user;
 export const getUserId = createSelector(getUserState, fromUser.getId);
+export const getUserName = createSelector(getUserState, fromUser.getName);

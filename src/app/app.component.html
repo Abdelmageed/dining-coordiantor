@@ -1,4 +1,8 @@
 <div class="container">
-    <app-search></app-search>
+   <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+       <div class="navbar-brand">Dining Coordiantor</div>
+        <app-search class="m-auto"></app-search>
+        <a class="user ml-auto nav-link" href="#">{{username | async}} / Logout</a>
+   </nav>
     <app-restaurants></app-restaurants>
 </div>

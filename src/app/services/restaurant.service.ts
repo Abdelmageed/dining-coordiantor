@@ -30,7 +30,7 @@ export class RestaurantService {
   getRestaurants(location: string): Observable<Restaurant[]> {
 
       return this.http.get(`/api/restaurants/?location=${location}`)
-        .map(res => res.json().data as Restaurant[])
+        .map(res => res.json().restaurants as Restaurant[])
         .catch((error) => {console.log(error); return [];});
   }
 

@@ -23,3 +23,4 @@ export function reducer(state = initialState, action: any): State {
 }
 
 export const getId = (state: State) => state.id;
+export const getName = (state: State) => state.name;
