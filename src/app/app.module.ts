@@ -10,15 +10,16 @@ import { AppComponent } from './app.component';
 import { SearchComponent } from './components/search/search.component';
 import { RestaurantsComponent } from './containers/restaurant-list/restaurants.component';
 import { RestaurantListComponent } from "./components/restaurant-list/restaurant-list.component";
+import { SigninComponent } from "./components/signin/signin.component";
 
 import { RestaurantService } from "./services/restaurant.service";
-// import { InMemoryWebApiModule } from "angular-in-memory-web-api";
-// import { RestaurantInMemoryService } from "./services/restaurant-in-memory.service";
+import { UserService } from "./services/user.service";
 
 import { reducers, initialState} from './reducers/index';
 
 import { EffectsModule } from "@ngrx/effects";
 import { RestaurantEffects } from "./effects/restaurant";
+import { UserEffects } from "./effects/user";
 
 import { httpFactory } from './httpFactory';
 import { MockBackendService } from "./services/mock-backend.service";
@@ -28,14 +29,15 @@ import { MockBackendService } from "./services/mock-backend.service";
     AppComponent,
     SearchComponent,
     RestaurantsComponent,
-    RestaurantListComponent
+    RestaurantListComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
     
     // InMemoryWebApiModule.forRoot(RestaurantInMemoryService),
     StoreModule.forRoot(reducers, {initialState}),
-    EffectsModule.forRoot([RestaurantEffects]),
+    EffectsModule.forRoot([RestaurantEffects, UserEffects]),
     NgbModule.forRoot(),
     ReactiveFormsModule,
   ],
@@ -48,7 +50,8 @@ import { MockBackendService } from "./services/mock-backend.service";
       useFactory: httpFactory
     },
     MockBackendService,
-    RestaurantService
+    RestaurantService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

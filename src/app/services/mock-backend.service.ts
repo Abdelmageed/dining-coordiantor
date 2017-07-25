@@ -57,8 +57,28 @@ export class MockBackendService {
 
                 } else if (c.request.url.match( this.routes['login'].regex) && c.request.method === this.routes['login'].method) {
 
+                    const body = JSON.parse(c.request.getBody());
+                    const email = body.email, password = body.password;
+                    const user = db.users.find(u => u.email === email && u.password === password);
+
+                    if (user) {
+                        user.token = 'auth token';
+                        c.mockRespond(new Response(new ResponseOptions({body: {data: user}})))
+                    } else {
+                        c.mockRespond(new Response(new ResponseOptions({status: 401, body: {error: 'Invalid email or password'}})))
+                    }
+
                 } else if (c.request.url.match( this.routes['logout'].regex) && c.request.method === this.routes['logout'].method) {
 
+                    const authToken = c.request.headers.get('Authorization');
+                    const user = db.users.find(u => u.token == authToken);
+
+                    if(user) {
+                        user.token = '';
+                        c.mockRespond(new Response(new ResponseOptions({status: 200, statusText: 'success'})))
+                    } else {
+                        c.mockRespond(new Response(new ResponseOptions({status: 401, statusText: 'Unauthorized'})));
+                    }
                 }
             })
     }
