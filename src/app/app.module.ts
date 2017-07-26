@@ -23,6 +23,7 @@ import { UserEffects } from "./effects/user";
 
 import { httpFactory } from './httpFactory';
 import { MockBackendService } from "./services/mock-backend.service";
+import { LogoutComponent } from './components/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MockBackendService } from "./services/mock-backend.service";
     SearchComponent,
     RestaurantsComponent,
     RestaurantListComponent,
-    SigninComponent
+    SigninComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

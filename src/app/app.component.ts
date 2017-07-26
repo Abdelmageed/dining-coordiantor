@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { Store } from "@ngrx/store";
 import * as fromRoot from './reducers/index';
 import { Observable } from "rxjs/Observable";
-import { MockBackendService } from "./services/mock-backend.service";
+import { UserService } from "./services/user.service";
+import { MockBackendService } from './services/mock-backend.service';
+
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +13,14 @@ import { MockBackendService } from "./services/mock-backend.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  username: Observable<string>;
+  isUserAuthenticated: boolean;
   
-  constructor (private _store: Store<fromRoot.State>, private backend: MockBackendService) {
-    this.username = _store.select(fromRoot.getUserName);
+  constructor (private _store: Store<fromRoot.State>, private userService: UserService, private backend: MockBackendService) {
+    
+    this._store.select(fromRoot.getUserToken)
+      .switchMap(token => this.userService.isUserAuthenticated(token))
+      .subscribe(isAuthenticated => this.isUserAuthenticated = isAuthenticated);
+
   }
 
 

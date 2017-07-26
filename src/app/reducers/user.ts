@@ -18,15 +18,12 @@ export function reducer(state = initialState, action: user.Actions): State {
     switch (action.type) {
 
         case user.LOGIN_REQUEST:
-            console.log('login request', ' state: ', {...state, loginError: ''});
             return {...state, loginError: ''};
 
         case user.LOGIN_SUCCESS:
-            console.log('login success state: ', {...state, ...action.payload});
             return {...state, ...action.payload};
 
         case user.LOGIN_ERROR:
-            console.log('login error state: ', {...state, loginError: action.payload});
             return {...state, loginError: action.payload}
 
         case user.LOGOUT_SUCCESS:
@@ -39,3 +36,5 @@ export function reducer(state = initialState, action: user.Actions): State {
 
 export const getId = (state: State) => state.id;
 export const getName = (state: State) => state.name;
+export const getToken = (state: State) => state.token;
+export const getLoginError = (state: State) => state.loginError;

@@ -14,13 +14,9 @@ export class UserService {
     }
 
     login(email: string, password: string): Observable<{[data: string]: User} | {[error: string]: string}> {
-        
         return this.http.post('api/users/login', {email, password})
-            .map(r => {
-                console.log(r.json());
-               return r.json();
-            })
-            .catch(err => {console.log(err); return of('Server error please try again later')});
+            .map(r =>  r.json())
+            .catch(err => of('Server error please try again later'));
 
     }
 
@@ -29,5 +25,12 @@ export class UserService {
         return this.http.get('api/users/logout', {headers: new Headers({'Authorization': authToken})}).map(r => r)
         .catch(err => of('Server error please try again later'));
         
+    }
+
+    isUserAuthenticated(authToken: string): Observable<boolean> {
+        if(authToken == '') {return of(false);}
+
+        return this.http.post('api/users/user-authenticated', {body: authToken})
+            .map(r => (r.json()));
     }
 }

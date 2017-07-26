@@ -1,0 +1,7 @@
+ .signin-form {
+    min-width: 272px;
+}
+
+.signin-form > div {
+    width: 245px;
+} 

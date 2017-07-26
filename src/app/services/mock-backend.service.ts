@@ -23,6 +23,10 @@ export class MockBackendService {
         'logout': {
             regex: /api\/users\/logout/i,
             method: RequestMethod.Get
+        },
+        'isUserAuthenticated': {
+            regex: /api\/users\/user-authenticated/,
+            method: RequestMethod.Post
         }
     }
 
@@ -56,7 +60,7 @@ export class MockBackendService {
                     c.mockRespond(new Response(new ResponseOptions({status: 204})));
 
                 } else if (c.request.url.match( this.routes['login'].regex) && c.request.method === this.routes['login'].method) {
-
+                    
                     const body = JSON.parse(c.request.getBody());
                     const email = body.email, password = body.password;
                     const user = db.users.find(u => u.email === email && u.password === password);
@@ -79,6 +83,11 @@ export class MockBackendService {
                     } else {
                         c.mockRespond(new Response(new ResponseOptions({status: 401, statusText: 'Unauthorized'})));
                     }
+                } else if (c.request.url.match( this.routes['isUserAuthenticated'].regex) && c.request.method === this.routes['isUserAuthenticated'].method) {
+                    
+                    const token = JSON.parse(c.request.getBody()).body;
+                    const user = db.users.find(u => u.token == token);
+                    c.mockRespond(new Response(new ResponseOptions({body: (db.users.find(u => u.token == token) != undefined)})))
                 }
             })
     }

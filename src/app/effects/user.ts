@@ -32,5 +32,11 @@ export class UserEffects {
             }
             return new user.LoginErrorAction(r.error as string);
         });
+
+    @Effect() logout$: Observable<Action> = this.actions$
+        .ofType(user.LOGOUT_REQUEST)
+        .map(toPayload)
+        .switchMap(token => this.userService.logout(token))
+        .map(r => new user.LogoutSuccessAction());
         
 }
