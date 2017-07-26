@@ -27,7 +27,8 @@ export class UserEffects {
                 return new user.LoginSuccessAction({
                     name: u.name,
                     token: u.token,
-                    id: u.id
+                    id: u.id,
+                    searchQuery: u.searchQuery
                 });
             }
             return new user.LoginErrorAction(r.error as string);
@@ -38,5 +39,11 @@ export class UserEffects {
         .map(toPayload)
         .switchMap(token => this.userService.logout(token))
         .map(r => new user.LogoutSuccessAction());
+
+    @Effect() setSearchQuery$: Observable<Action> = this.actions$
+        .ofType(user.SET_SEARCH_QUERY_REQUEST)
+        .map(toPayload)
+        .switchMap(query => this.userService.setSearchQuery(query))
+        .map(query => new user.SetSearchQueryAction(query));
         
 }

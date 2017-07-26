@@ -8,9 +8,10 @@ import * as restaurant from '../actions/restaurant';
 import * as user from '../actions/user';
 import * as fromRoot from '../reducers/index';
 import { RestaurantService } from '../services/restaurant.service';
+import { UserService } from "../services/user.service";
 
 import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/concatMap';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/last';
 
@@ -18,6 +19,7 @@ import 'rxjs/add/operator/last';
 export class RestaurantEffects {
     constructor(
         private restaurantService: RestaurantService,
+        private userService: UserService,
         private actions$: Actions,
         private _store: Store<fromRoot.State>
     ) {}
@@ -25,7 +27,7 @@ export class RestaurantEffects {
     @Effect() search$: Observable<Action> = this.actions$
         .ofType(restaurant.SEARCH)
         .map(toPayload)
-        .mergeMap(location => forkJoin(of(new user.SetSearchQueryAction(location)), this.restaurantService.getRestaurants(location)))
+        .concatMap(location => forkJoin(of(new user.SetSearchQueryRequestAction(location)), this.restaurantService.getRestaurants(location)))
         .map((res) => {
             this._store.next(res[0]);
             return new restaurant.SearchCompleteAction(res[1])

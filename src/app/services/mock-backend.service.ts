@@ -27,6 +27,10 @@ export class MockBackendService {
         'isUserAuthenticated': {
             regex: /api\/users\/user-authenticated/,
             method: RequestMethod.Post
+        },
+        'updateUser': {
+            regex: /api\/users\/[0-9]+/i,
+            method: RequestMethod.Put
         }
     }
 
@@ -88,6 +92,19 @@ export class MockBackendService {
                     const token = JSON.parse(c.request.getBody()).body;
                     const user = db.users.find(u => u.token == token);
                     c.mockRespond(new Response(new ResponseOptions({body: (db.users.find(u => u.token == token) != undefined)})))
+                } else if (c.request.url.match(this.routes['updateUser'].regex)  && c.request.method === this.routes['updateUser'].method) {
+                    const userId = parseInt(c.request.url.split('/')[2]);
+                    const newUser = JSON.parse(c.request.getBody()).body;
+                    
+                    
+                    db.users = db.users.map(u => {
+                        if (u.id === userId) {
+                            return {...u, ...newUser};
+                        }
+                        return u;
+                    });
+
+                    c.mockRespond(new Response(new ResponseOptions({status: 204})));
                 }
             })
     }
