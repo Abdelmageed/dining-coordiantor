@@ -1,10 +1,12 @@
 <div *ngFor="let restaurant of restaurants" class="restaurant">
   {{restaurant.name}} 
   <span *ngIf="!restaurantService.isLoggedInUserGoing(restaurant.id)" 
+        [ngClass]="{'user-can-click': isAuthenticated}"       
         class="going-count"
         (click)="addGoing.emit(restaurant.id)">{{restaurant.going.length}} Going
   </span>
-  <span *ngIf="restaurantService.isLoggedInUserGoing(restaurant.id)" 
+  <span *ngIf="restaurantService.isLoggedInUserGoing(restaurant.id)"
+        [ngClass]="{'user-can-click': isAuthenticated}"
         class="going-count user-going"
         (click)="removeGoing.emit(restaurant.id)">{{restaurant.going.length}} Going
   </span>

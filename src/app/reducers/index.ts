@@ -36,3 +36,4 @@ export const getUserId = createSelector(getUserState, fromUser.getId);
 export const getUserName = createSelector(getUserState, fromUser.getName);
 export const getUserToken = createSelector(getUserState, fromUser.getToken);
 export const getLoginError = createSelector(getUserState, fromUser.getLoginError);
+export const getUserSearchQuery = createSelector(getUserState, fromUser.getSearchQuery);

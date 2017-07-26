@@ -1,4 +1,5 @@
 <app-restaurant-list    [restaurants]="restaurants | async"
                         (addGoing)="addGoing($event)"
                         (removeGoing)="removeGoing($event)"
+                        [isAuthenticated]="isUserAuthenticated"
 ></app-restaurant-list>

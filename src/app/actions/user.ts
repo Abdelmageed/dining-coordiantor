@@ -7,6 +7,7 @@ export const LOGIN_ERROR = '[User] LOGIN_ERROR';
 export const LOGOUT_REQUEST = '[User] LOGOUT_REQUEST';
 export const LOGOUT_SUCCESS = '[User] LOGOUT_SUCCESS';
 export const LOGOUT_ERROR = '[User] LOGOUT_ERROR';
+export const SET_SEARCH_QUERY = '[User] SET_SEARCH_QUERY';
 
 
 export class LoginRequestAction implements Action {
@@ -49,9 +50,16 @@ export class LogoutErrorAction implements Action {
     constructor() {}
 }
 
+export class SetSearchQueryAction implements Action {
+    readonly type = SET_SEARCH_QUERY;
+
+    constructor(public payload: string) {}
+}
+
 export type Actions = LoginRequestAction
                     | LoginSuccessAction
                     | LoginErrorAction
                     | LogoutRequestAction
                     | LogoutSuccessAction
-                    | LogoutErrorAction;
+                    | LogoutErrorAction
+                    | SetSearchQueryAction;

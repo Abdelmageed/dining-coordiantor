@@ -5,13 +5,15 @@ export interface State {
     id: number;
     name: string;
     loginError: string;
+    searchQuery: string;
 }
 
 export const initialState: State = {
     token: '',
     name: '',
     id: 0,
-    loginError: ''
+    loginError: '',
+    searchQuery: ''    
 };
 
 export function reducer(state = initialState, action: user.Actions): State {
@@ -24,10 +26,13 @@ export function reducer(state = initialState, action: user.Actions): State {
             return {...state, ...action.payload};
 
         case user.LOGIN_ERROR:
-            return {...state, loginError: action.payload}
+            return {...state, loginError: action.payload};
 
         case user.LOGOUT_SUCCESS:
             return initialState;
+
+        case user.SET_SEARCH_QUERY:
+            return {...state, searchQuery: action.payload};
 
         default:
             return state;
@@ -38,3 +43,4 @@ export const getId = (state: State) => state.id;
 export const getName = (state: State) => state.name;
 export const getToken = (state: State) => state.token;
 export const getLoginError = (state: State) => state.loginError;
+export const getSearchQuery = (state: State) => state.searchQuery;

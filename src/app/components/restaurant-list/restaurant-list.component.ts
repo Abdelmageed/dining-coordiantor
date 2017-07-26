@@ -11,6 +11,7 @@ import { RestaurantService } from "../../services/restaurant.service";
 export class RestaurantListComponent implements OnInit {
 
   @Input() restaurants: Restaurant[];
+  @Input() isAuthenticated: boolean;
   @Output() addGoing = new EventEmitter<string>();
   @Output() removeGoing = new EventEmitter<string>();
   

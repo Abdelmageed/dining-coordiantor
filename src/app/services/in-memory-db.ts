@@ -24,23 +24,24 @@ const restaurants: Restaurant[] = [
                 id: 3,
                 name: 'Hot Chillis',
                 location: 'Cairo',
-                going: [0]
+                going: [1]
             },
             {
                 id: 4,
                 name: 'Icy Cocktails',
                 location: 'Alexandria',
-                going: [0, 1, 2]
+                going: [1, 2, 3]
             }
 ];
 
 const users: User[] = [
     {
-        id: 0,
+        id: 1,
         name: 'Abdelmageed',
         email: 'mgd@sm.com',
         password: 'Welcome123',
-        token: ''
+        token: '',
+        searchQuery: ''
     }
 ];
 

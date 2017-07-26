@@ -12,3 +12,7 @@
     background-color: darkblue;
     color: white;
 }
+
+.user-can-click {
+    cursor: pointer;
+}

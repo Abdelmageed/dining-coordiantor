@@ -11,16 +11,29 @@ import * as fromRoot from '../../reducers/index';
 })
 export class SearchComponent implements OnInit {
 
+  searchQuery = '';
+  searchedOnLoad = false;
+
   searchForm = new FormGroup ({
-    search: new FormControl()
+    search: new FormControl(this.searchQuery)
   })
   
-  constructor(private _store: Store<fromRoot.State>) { }
+  constructor(private _store: Store<fromRoot.State>) { 
+    _store.select(fromRoot.getUserSearchQuery)
+      .subscribe(q => {
+        if (this.searchQuery != q && !this.searchedOnLoad) {
+          this.search(q);
+          this.searchForm.controls['search'].setValue(q);
+        }
+        this.searchQuery = q;
+      })
+  }
 
   ngOnInit() {
   }
 
   search (location: string) {
+    this.searchedOnLoad = true;
     this._store.dispatch(new SearchAction(location));
   }
 
