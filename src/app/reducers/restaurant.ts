@@ -56,6 +56,10 @@ export function reducer(state = initialState, action: restaurant.Actions): State
                     [action.payload.restaurantId]: newRest})
             });
         }
+
+        case restaurant.CLEAR_RESTAURANTS: {
+            return initialState;
+        }
             
         default:
             return state;

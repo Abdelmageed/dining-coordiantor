@@ -7,6 +7,7 @@ export const ADD_GOING_REQUEST ='[Restaurant] ADD_GOING_REQUEST';
 export const ADD_GOING = '[Restaurant] ADD_GOING';
 export const REMOVE_GOING_REQUEST = '[Restaurant] REMOVE_GOING_REQUEST';
 export const REMOVE_GOING = '[Restaurant] REMOVE_GOING';
+export const CLEAR_RESTAURANTS = '[Restaurant] CLEAR_RESTAURANTS';
 
 export class SearchAction implements Action {
     readonly type = SEARCH;
@@ -44,8 +45,16 @@ export class RemoveGoingAction implements Action {
     constructor(public payload: {restaurantId: number, userId: number}) {}
 }
 
+export class ClearRestaurantsAction implements Action {
+    readonly type = CLEAR_RESTAURANTS;
+
+    constructor() {}
+}
+
+
 export type Actions = SearchAction
                     | SearchCompleteAction
                     | AddGoingRequestAction
                     | AddGoingAction
-                    | RemoveGoingAction;
+                    | RemoveGoingAction
+                    | ClearRestaurantsAction;

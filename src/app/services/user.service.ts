@@ -21,7 +21,7 @@ export class UserService {
             .subscribe(token => this.token = token);
     }
 
-    login(email: string, password: string): Observable<{[data: string]: User} | {[error: string]: string}> {
+    login(email: string, password: string): Observable<{data: User, error: string}> {
         return this.http.post('api/users/login', {email, password})
             .map(r =>  {console.log(r.json()); return r.json()})
             .catch(err => of('Server error please try again later'));

@@ -52,7 +52,7 @@ export class MockBackendService {
                 } else if (c.request.url.match( this.routes['updateRestaurant'].regex) && c.request.method === this.routes['updateRestaurant'].method) {
 
                     const restaurantId = parseInt(c.request.url.split('/')[3]);
-                    const newRestaurant = c.request.getBody();
+                    const newRestaurant = JSON.parse(c.request.getBody());
 
                     db.restaurants = db.restaurants.map(r => {
                         if (r.id === restaurantId) {

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { SearchAction } from '../../actions/restaurant';
 import { FormGroup, FormControl } from "@angular/forms";
 import * as fromRoot from '../../reducers/index';
+import * as search from '../../actions/search';
 
 @Component({
   selector: 'app-search',
@@ -12,33 +13,39 @@ import * as fromRoot from '../../reducers/index';
 export class SearchComponent implements OnInit {
 
   searchQuery = '';
-  searchedOnLoad = false;
 
   searchForm = new FormGroup ({
     search: new FormControl(this.searchQuery)
-  })
+  });
   
   constructor(private _store: Store<fromRoot.State>) { 
-    _store.select(fromRoot.getUserSearchQuery)
-      .subscribe(q => {
-        if (this.searchQuery != q && !this.searchedOnLoad) {
-          this.search(q);
-          this.searchForm.controls['search'].setValue(q);
+
+    _store.select(fromRoot.getCurrentSearchQuery)
+      .subscribe(query => {
+        const searchField = this.searchForm.controls['search'];
+        if (query != searchField.value) {
+          searchField.setValue(query);
         }
-        this.searchQuery = q;
-      })
+      });
+
+    this.searchForm.valueChanges
+      .subscribe(data => this.onChange(data));
   }
 
   ngOnInit() {
+    this.search('');
   }
 
   search (location: string) {
-    this.searchedOnLoad = true;
     this._store.dispatch(new SearchAction(location));
   }
 
   onSubmit() {
     this.search(this.searchForm.get('search').value);
+  }
+
+  onChange (data: any) {
+    this._store.dispatch(new search.SetSearhQueryAction(this.searchForm.controls['search'].value))
   }
 
 }
