@@ -6,6 +6,7 @@ import { of } from 'rxjs/observable/of';
 import { Store } from "@ngrx/store";
 
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 
 import * as fromRoot from '../reducers/index';
 

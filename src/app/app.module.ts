@@ -5,6 +5,7 @@ import { Http, BaseRequestOptions } from "@angular/http";
 import { StoreModule } from "@ngrx/store";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
 import { SearchComponent } from './components/search/search.component';
@@ -42,6 +43,9 @@ import { LogoutComponent } from './components/logout/logout.component';
     EffectsModule.forRoot([RestaurantEffects, UserEffects]),
     NgbModule.forRoot(),
     ReactiveFormsModule,
+    StoreDevtoolsModule.instrument({
+      maxAge: 25
+    })
   ],
   providers: [
     BaseRequestOptions,

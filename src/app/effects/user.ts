@@ -20,7 +20,7 @@ import { User } from "../models/user";
 @Injectable()
 export class UserEffects {
 
-    constructor(private actions$: Actions, private userService: UserService, private _store: Store<fromRoot.State>) {}
+    constructor(private actions$: Actions, private userService: UserService) {}
 
     @Effect() login$: Observable<Action> = this.actions$
         .ofType(user.LOGIN_REQUEST)
