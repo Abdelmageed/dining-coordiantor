@@ -1,8 +1,15 @@
 .restaurant {
+    display: flex;
     margin-bottom: 20px;
+    justify-content: center;
+}
+.restaurant-content {
+    flex-grow: 1;
 }
 .going-count {
-    float: right;
+    /* float: right; */
+    /* align-self: center; */
+    align-self: flex-end;
     padding: 5px;
     border: 1px solid darkblue;
     border-radius: 10%;

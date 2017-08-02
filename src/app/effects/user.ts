@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions, toPayload } from '@ngrx/effects';
-import { Action, Store } from '@ngrx/store';
+import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-import { forkJoin } from 'rxjs/observable/forkJoin';
 import * as user from '../actions/user';
 import * as restaurant from '../actions/restaurant';
 import * as search from '../actions/search';
@@ -12,7 +11,6 @@ import * as fromRoot from '../reducers/index';
 import { UserService } from '../services/user.service';
 
 import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/mergeMap';
 import { User } from "../models/user";
 

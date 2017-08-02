@@ -1,5 +1,8 @@
 <div *ngFor="let restaurant of restaurants" class="restaurant">
-  {{restaurant.name}} 
+  <div class="restaurant-content">
+      <h4>{{restaurant.name}}</h4>
+      <h5>{{restaurant.location}}</h5>
+  </div>
   <span *ngIf="!restaurantService.isLoggedInUserGoing(restaurant.id)" 
         [ngClass]="{'user-can-click': isAuthenticated}"       
         class="going-count"
