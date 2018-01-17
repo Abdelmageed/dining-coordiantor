@@ -28,8 +28,10 @@
     "angular-in-memory-web-api": "^0.3.2",
     "bootstrap": "^4.0.0-alpha.6",
     "core-js": "^2.4.1",
+    "mongoose": "^4.13.9",
     "reselect": "^3.0.1",
     "rxjs": "^5.4.1",
+    "typegoose": "^3.8.0",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
